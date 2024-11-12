@@ -14,18 +14,38 @@ class TrafficSystem {
 
     public static void main(String[] args) {
         TrafficSystem trafficSystem = new TrafficSystem(new RedLight());
-        trafficSystem.display();
-        trafficSystem.update();
-        trafficSystem.display();
+        while(true){
 
-        trafficSystem.update();
-        trafficSystem.display();
-        
-        trafficSystem.update();
-        trafficSystem.display();
-
-        trafficSystem.update();
-        trafficSystem.display();
+            trafficSystem.display();
+            try {
+                Thread.sleep(5000);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+            trafficSystem.update();
+            trafficSystem.display();
+            try {
+                Thread.sleep(2000);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+            trafficSystem.update();
+            trafficSystem.display();
+            try {
+                Thread.sleep(10000);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+            trafficSystem.update();
+            trafficSystem.display();
+            try {
+                Thread.sleep(10000);
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+            trafficSystem.update();
+            trafficSystem.display();
+        }
     }
 }
 
