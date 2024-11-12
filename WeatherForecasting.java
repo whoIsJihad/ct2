@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class WeatherForecasting {
     List<User> subscribers;
@@ -22,12 +23,27 @@ public class WeatherForecasting {
         for (User user : subscribers)
             user.update("Weather Condition for "+user.toString());
     }
+    public void alert(){
+        String[] conditions = {"Possibilty of Snow", "Possibility of Storm"};
+
+        // Create an instance of Random
+        Random random = new Random();
+
+        // Generate a random index between 0 and the last index of the array
+        for(User user:subscribers){
+            int randomIndex = random.nextInt(conditions.length);
+            user.alertUser(conditions[randomIndex]);
+        }
+
+    }
+
 
 }
 
 class User {
     public String condition;
     public String name;
+    public String severeWeather;
 
     public User(String name) {
         this.name=name;
@@ -37,8 +53,15 @@ class User {
     public void update(String condition) {
         this.condition = condition;
     }
+    public void alertUser(String severeWeather){
+        this.severeWeather=severeWeather;
+    }
     public String toString(){
         return name;
+    }
+    public void displayWeather(){
+        System.out.println(this.condition);
+        System.out.println(this.severeWeather);
     }
 }
 
@@ -51,7 +74,8 @@ class Main{
         weatherForecasting.addUser(patrick);
         weatherForecasting.addUser(spongobob);
         weatherForecasting.notifyUsers();
-        System.out.println(spongobob.condition);
-        System.out.println(patrick.condition);
+        weatherForecasting.alert();
+        spongobob.displayWeather();
+        patrick.displayWeather();
     }
 }
